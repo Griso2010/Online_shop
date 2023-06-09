@@ -2,6 +2,12 @@ from django.db import models
 from users.models import User
 
 
+__all__ =(
+    'ProductCategory',
+    'Product',
+    'Basket',
+)
+
 class ProductCategory(models.Model):
     name = models.CharField(max_length=25, unique=True)
     description = models.TextField(null=True, blank=True)
