@@ -3,6 +3,8 @@ from django.shortcuts import render, redirect
 from users.forms import *
 from django.contrib import auth, messages
 from django.urls import reverse
+from products.models import Basket
+from django.contrib.auth.decorators import login_required
 
 __all_ = (
     'login',
@@ -41,7 +43,7 @@ def registration(request):
     context = {'form': form}
     return render(request, 'users/registration.html', context)
 
-
+@login_required
 def profile(request):
     if request.method == 'POST':
         form = UserProfileForm(instance=request.user, data=request.POST, files=request.FILES)
@@ -51,7 +53,17 @@ def profile(request):
             return redirect(reverse('users:profile'))
     else:
         form = UserProfileForm(instance=request.user)
-    context = {'title': 'Store - Профиль', 'form': form}
+
+    baskets = Basket.objects.filter(user=request.user)
+
+
+
+
+    context = {
+        'title': 'Store - Профиль',
+        'form': form,
+        'baskets': Basket.objects.filter(user=request.user),
+    }
     return render(request, 'users/profile.html', context)
 
 
