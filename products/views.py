@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 
+
+
 def index(request):
     context = {'title': 'Store'}
     return render(request, 'products/index.html', context)
