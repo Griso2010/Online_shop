@@ -1,7 +1,5 @@
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -37,7 +35,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="{% url 'users:profile' %}">Профиль</a>
+                                <a class="dropdown-item" href="{% url 'users:profile' user.id %}">Профиль</a>
                             </li>
                             <li><a class="dropdown-item" href="orders/orders.html">Заказы</a></li>
                             {% if user.is_usperuser or user.is_staff %}
