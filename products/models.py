@@ -1,12 +1,13 @@
 from django.db import models
+
 from users.models import User
 
-
-__all__ =(
+__all__ = (
     'ProductCategory',
     'Product',
     'Basket',
 )
+
 
 class ProductCategory(models.Model):
     name = models.CharField(max_length=25, unique=True)
@@ -42,6 +43,7 @@ class BasketQuerySet(models.QuerySet):
 
     def total_quantity(self):
         return sum(product.quantity() for product in self)
+
 
 class Basket(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
